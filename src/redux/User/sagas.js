@@ -68,7 +68,6 @@ export function* loginFail(action) {
       loginError: errorMessage,
     },
   });
-  message.error('Could not log you in. Please Check your credentials.');
 }
 
 export function* logout(action) {

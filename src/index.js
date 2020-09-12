@@ -6,6 +6,8 @@ import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
 import { BrowserRouter } from 'react-router-dom';
 
+import 'index.css';
+
 import reducers from './redux/reducers';
 import sagas from './redux/sagas';
 import Router from './router';
