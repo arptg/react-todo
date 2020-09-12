@@ -14,16 +14,16 @@ export function* login(action) {
       loading: true,
     },
   });
-  let { email, password } = action.payload;
+  let { username, password } = action.payload;
   try {
-    let userData = yield call(auth.login, email, password);
+    let userData = yield call(auth.login, username, password);
     yield put({
       type: actions.LOGIN_SUCCESS,
       payload: {
         userData,
       },
     });
-    yield call(history.push, '/');
+    history.push('/');
   } catch (error) {
     if (error.response && error.response.data && error.response.data.detail) {
       yield put({
@@ -90,7 +90,8 @@ export function* registerUser(action) {
   const { username, email, password } = action.payload;
   try {
     yield call(auth.register, username, email, password);
-    message.success('Registration Failed. Try different username.');
+    message.success('Registration Successful.');
+    history.push('/user/login');
   } catch (_) {
     message.error('Registration Failed. Try different username.');
   }

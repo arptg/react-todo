@@ -40,11 +40,10 @@ export default class Auth extends Api {
 
   getUserData(response) {
     const loginPayload = JSON.parse(atob(response.access.split('.')[1]));
-    console.log('loginPayload', loginPayload);
     return {
       username: loginPayload.username,
       email: loginPayload.email,
-      // userId: loginPayload.user_id,
+      userId: loginPayload.user_id,
     };
   }
 

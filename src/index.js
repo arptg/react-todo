@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
-import { BrowserRouter } from 'react-router-dom';
+import { Router as BrowserRouter } from 'react-router-dom';
 
 import 'index.css';
 
@@ -31,7 +31,7 @@ sagaMiddleware.run(sagas);
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Provider store={store}>
         <Router history={history} />
       </Provider>
