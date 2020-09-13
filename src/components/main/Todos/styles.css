@@ -14,3 +14,8 @@
 h5.todo-title.ant-typography {
   margin: 0;
 }
+
+.create-button {
+  text-align: center;
+  margin-top: 30px;
+}

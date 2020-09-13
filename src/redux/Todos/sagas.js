@@ -68,9 +68,9 @@ export function* createLabel(action) {
 }
 
 export function* createTodo(action) {
-  const { title, description } = action.payload;
+  const { title, description, label } = action.payload;
   try {
-    yield call(todo.createTodo, title, description);
+    yield call(todo.createTodo, title, description, label);
     yield put({
       type: actions.GET_TODOS,
     });
@@ -82,9 +82,9 @@ export function* createTodo(action) {
 }
 
 export function* updateTodo(action) {
-  const { title, description, done } = action.payload;
+  const { title, description, done, label } = action.payload;
   try {
-    yield call(todo.updateTodo, title, description, done);
+    yield call(todo.updateTodo, title, description, done, label);
     yield put({
       type: actions.GET_TODOS,
     });

@@ -1,5 +1,8 @@
 import React from 'react';
 import { Typography, Form, Input, Select, Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+
+import actions from 'redux/Todos/actions';
 
 import './styles.css';
 
@@ -13,8 +16,11 @@ export default function Create() {
     wrapperCol: { offset: 22, span: 2 },
   };
 
+  const dispatch = useDispatch();
+  const labels = useSelector((state) => state.Todos.labels);
+
   function handleCreateFormSubmit(values) {
-    console.log(values);
+    dispatch({ type: actions.CREATE_TODO, payload: values });
   }
 
   return (
@@ -43,7 +49,12 @@ export default function Create() {
               rules={[{ required: true, message: 'Please select a bucket' }]}
             >
               <Select>
-                <Select.Option value="none">Label</Select.Option>
+                {labels &&
+                  labels.map((label) => (
+                    <Select.Option key={label.id} value={label.id}>
+                      {label.name}
+                    </Select.Option>
+                  ))}
               </Select>
             </Form.Item>
             <Form.Item label="Description" name="description">

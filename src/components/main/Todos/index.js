@@ -14,38 +14,7 @@ import { history } from 'index';
 
 import './styles.css';
 
-const todos = [
-  {
-    id: 1,
-    title: 'Some Title',
-    description: 'Lorem Ipsum',
-    done: false,
-    label: 'Some Label',
-  },
-  {
-    id: 2,
-    title: 'Some Title',
-    description: 'Lorem Ipsum',
-    done: false,
-    label: 'Some Label',
-  },
-  {
-    id: 3,
-    title: 'Some Title',
-    description: 'Lorem Ipsum',
-    done: true,
-    label: 'Some Label',
-  },
-  {
-    id: 4,
-    title: 'Some Title',
-    description: 'Lorem Ipsum',
-    done: false,
-    label: 'Some Label',
-  },
-];
-
-export default function Todos(props) {
+export default function Todos({ todos, ...props }) {
   const [selectedTodo, setSelectedTodo] = useState(null);
   const [showTodo, setShowTodo] = useState(false);
 
@@ -141,6 +110,11 @@ export default function Todos(props) {
             </div>
           </Card>
         ))}
+        <div className="create-button">
+          <Button type="primary" onClick={handleCreateTodo}>
+            Create Todo
+          </Button>
+        </div>
       </Space>
     );
   }

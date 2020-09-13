@@ -34,13 +34,14 @@ export default class Todos extends Api {
     });
   };
 
-  createTodo = (title, description) => {
+  createTodo = (title, description, label) => {
     return new Promise(async (resolve, reject) => {
       try {
         const { data } = await this.instance.post(`/`, {
           title,
           description,
           done: false,
+          label,
         });
         resolve(data);
       } catch (error) {
@@ -49,13 +50,14 @@ export default class Todos extends Api {
     });
   };
 
-  updateTodo = (id, title, description, done) => {
+  updateTodo = (id, title, description, done, label) => {
     return new Promise(async (resolve, reject) => {
       try {
         const { data } = await this.instance.put(`/${id}/`, {
           title,
           description,
           done,
+          label,
         });
         resolve(data);
       } catch (error) {
