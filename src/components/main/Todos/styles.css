@@ -1,0 +1,16 @@
+.todo-item-wrapper {
+  width: 100%;
+}
+
+.todo-item-wrapper .ant-card-body::after,
+.todo-item-wrapper .ant-card-body::before {
+  display: none;
+}
+
+.todo-item {
+  width: 100%;
+}
+
+h5.todo-title.ant-typography {
+  margin: 0;
+}
