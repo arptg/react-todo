@@ -5,6 +5,8 @@ import Api from './api';
 import actions from './actions';
 import { message } from 'antd';
 
+import todoActions from '../Todos/actions';
+
 const auth = new Api('user/');
 
 export function* login(action) {
@@ -54,6 +56,14 @@ export function* loginSuccess(action) {
       loginError: null,
     },
   });
+
+  yield put({
+    type: todoActions.GET_TODOS,
+  });
+
+  yield put({
+    type: todoActions.GET_LABELS,
+  });
 }
 
 export function* loginFail(action) {
@@ -70,7 +80,7 @@ export function* loginFail(action) {
   });
 }
 
-export function* logout(action) {
+export function* logout() {
   yield put({
     type: actions.SET_DATA,
     payload: {
