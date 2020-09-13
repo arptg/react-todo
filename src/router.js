@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { connect } from 'react-redux';
 
@@ -27,8 +27,18 @@ const routes = [
   },
   // App Routes
   {
-    path: '/',
-    Component: loadable(() => import('pages/main')),
+    path: '/todos',
+    Component: loadable(() => import('pages/todos')),
+    exact: true,
+  },
+  {
+    path: '/todos/create',
+    Component: loadable(() => import('pages/todos/create')),
+    exact: true,
+  },
+  {
+    path: '/todos/:id',
+    Component: loadable(() => import('pages/todos/edit')),
     exact: true,
   },
   {
@@ -44,6 +54,7 @@ class Router extends React.Component {
     return (
       <Layout>
         <Switch>
+          <Route exact path="/" render={() => <Redirect to="/todos" />} />
           {routes.map(({ path, Component, exact }) => (
             <Route path={path} key={path} exact={exact} component={Component} />
           ))}
