@@ -7,7 +7,7 @@ export default function Auth({ children }) {
   return (
     <div className="auth-wrapper">
       <div className="auth-background">
-        <img src={background} />
+        <img src={background} alt="login_background" />
       </div>
       <div className="auth-content">{children}</div>
     </div>

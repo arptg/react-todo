@@ -15,13 +15,17 @@ export default function Main() {
     dispatch({ type: actions.DELETE_TODO, payload: { id } });
   }
 
+  function markTodo(values) {
+    dispatch({ type: actions.MARK_TODO, payload: values });
+  }
+
   return (
     <div className="homepage-wrapper">
       <div className="title-wrapper">
         <Typography.Title>Todos</Typography.Title>
         <hr className="title-hr" />
         <div className="todos-wrapper">
-          <Todos todos={todos} deleteTodo={deleteTodo} />
+          <Todos todos={todos} deleteTodo={deleteTodo} markTodo={markTodo} />
         </div>
       </div>
     </div>

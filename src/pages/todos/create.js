@@ -1,6 +1,7 @@
 import React from 'react';
-import { Typography, Form, Input, Select, Button } from 'antd';
+import { Typography, Form, Input, Select, Button, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import CreateLabelButton from 'components/main/Labels/CreateLabel';
 
 import actions from 'redux/Todos/actions';
 
@@ -48,14 +49,21 @@ export default function Create() {
               name="label"
               rules={[{ required: true, message: 'Please select a bucket' }]}
             >
-              <Select>
-                {labels &&
-                  labels.map((label) => (
-                    <Select.Option key={label.id} value={label.id}>
-                      {label.name}
-                    </Select.Option>
-                  ))}
-              </Select>
+              <Row gutter={[24]}>
+                <Col span={22}>
+                  <Select>
+                    {labels &&
+                      labels.map((label) => (
+                        <Select.Option key={label.id} value={label.id}>
+                          {label.name}
+                        </Select.Option>
+                      ))}
+                  </Select>
+                </Col>
+                <Col span={2}>
+                  <CreateLabelButton />
+                </Col>
+              </Row>
             </Form.Item>
             <Form.Item label="Description" name="description">
               <Input.TextArea />

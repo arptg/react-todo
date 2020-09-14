@@ -45,7 +45,9 @@ export default function Todos({ todos, ...props }) {
 
   function handleMarkTodo(id, value) {
     if (typeof props.markTodo === 'function') {
-      props.markTodo(id, value);
+      let [todo] = todos.filter((td) => td.id === id);
+      todo.done = value;
+      props.markTodo(todo);
     }
   }
 
@@ -92,7 +94,7 @@ export default function Todos({ todos, ...props }) {
                 >
                   {todo.title}
                 </Typography.Title>
-                <Tag>{todo.label}</Tag>
+                <Tag>{todo.label_name}</Tag>
               </Space>
             </div>
             <div className="todo-actions">
@@ -131,7 +133,7 @@ export default function Todos({ todos, ...props }) {
       >
         <Space direction="vertical">
           <div>
-            <b>Bucket : </b> {selectedTodo?.label}
+            <b>Bucket : </b> {selectedTodo?.label_name}
           </div>
           <div>
             <b>Status : </b> {selectedTodo?.done ? 'Done' : 'Not Done'}

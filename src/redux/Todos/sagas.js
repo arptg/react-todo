@@ -60,6 +60,7 @@ export function* createLabel(action) {
     yield put({
       type: actions.GET_LABELS,
     });
+    message.success('Label created successfully.');
   } catch (err) {
     message.error(
       'Label creation failed. Please ensure the name is not already in use.'
@@ -74,6 +75,7 @@ export function* createTodo(action) {
     yield put({
       type: actions.GET_TODOS,
     });
+    message.success('Todo created successfully.');
     history.push('/todos');
   } catch (err) {
     message.error('Todo creation failed. Please try again later.');
@@ -82,17 +84,28 @@ export function* createTodo(action) {
 }
 
 export function* updateTodo(action) {
-  const { title, description, done, label } = action.payload;
+  const { id, title, description, done, label } = action.payload;
   try {
-    yield call(todo.updateTodo, title, description, done, label);
+    yield call(todo.updateTodo, id, title, description, done, label);
     yield put({
       type: actions.GET_TODOS,
     });
+    message.success('Todo updated successfully.');
     history.push('/todos');
   } catch (err) {
     message.error('Todo updation failed. Please try again later.');
     history.push('/todos');
   }
+}
+
+export function* markTodo(action) {
+  const { id, title, description, done, label } = action.payload;
+  try {
+    yield call(todo.updateTodo, id, title, description, done, label);
+    yield put({
+      type: actions.GET_TODOS,
+    });
+  } catch (err) {}
 }
 
 export function* deleteTodo(action) {
@@ -102,6 +115,7 @@ export function* deleteTodo(action) {
     yield put({
       type: actions.GET_TODOS,
     });
+    message.success('Todo deleted successfully.');
   } catch (err) {
     message.error('Todo deletion failed. Please try again later.');
   }
@@ -115,6 +129,7 @@ export default function* rootSaga() {
     takeEvery(actions.CREATE_LABEL, createLabel),
     takeEvery(actions.CREATE_TODO, createTodo),
     takeEvery(actions.EDIT_TODO, updateTodo),
+    takeEvery(actions.MARK_TODO, markTodo),
     takeEvery(actions.DELETE_TODO, deleteTodo),
   ]);
 }
